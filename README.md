@@ -9,9 +9,10 @@
 ## Installation
 
     No installation is needed. Simply click on the link below:
-    ![About Me](https://nguyenvinh2.github.io/about-me-vinh/)
 
     You may clone this repo and utilize it to your liking.
+
+  [About Me](https://github.com/nguyenvinh2/about-me-vinh/)
 
 ## Author
 
