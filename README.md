@@ -12,7 +12,7 @@
 
     You may clone this repo and utilize it to your liking.
 
-  [About Me](https://github.com/nguyenvinh2/about-me-vinh/)
+  [About Me](https://nguyenvinh2.github.io/about-me-vinh/)
 
 ## Author
 
