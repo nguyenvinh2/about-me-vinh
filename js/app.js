@@ -1,6 +1,6 @@
 'use strict';
 
-let answerTemplate = {
+const answerTemplate = {
   'answerSet': {
     'yes': ['yes', 'y', 'yep', 'sure', 'yeah', 'oui'],
     'no': ['no', 'n', 'nah', 'oh hell no', 'non']
@@ -24,24 +24,26 @@ function AboutMeGame(name, questions) {
   this.userName = name,
   this.guessingGameData = questions,
   this.userAnswer = [];
+  this.userPoints = 0;
 
   this.playGame = () => {
     alert(`Hi ${this.userName}, we're going to play a guessing game about moi. Click OK to continue...`);
     for (let i = 0; i < this.guessingGameData.questionSet.questions.length; i++) {
-      this.userAnswer.push(prompt(this.guessingGameData.questionSet.questions[i]));
-      console.log(this.userAnswer[i]);
-      console.log(this.guessingGameData.answer[i]);
-      if(this.guessingGameData.answer[i].includes(this.userAnswer[i].toLowerCase())) {
+      this.userAnswer.push({'userReponse': prompt(this.guessingGameData.questionSet.questions[i]), 'eval': ''});
+      if(this.guessingGameData.answer[i].includes(this.userAnswer[i].userReponse.toLowerCase())) {
         alert(this.guessingGameData.questionSet.responseSet.correct[i]);
+        this.userPoints++;
+        this.userAnswer[i].eval = 'correct';
       } else {
         alert(this.guessingGameData.questionSet.responseSet.incorrect[i]);
+        this.userAnswer[i].eval = 'incorrect';
       }
-      console.log(`${this.userName} answered ${this.userAnswer[i]} to Question "${this.guessingGameData.questionSet.questions[i]}".`);
+      console.log(`${this.userName} answered ${this.userAnswer[i].userReponse} to Question "${this.guessingGameData.questionSet.questions[i]}" and is ${this.userAnswer[i].eval}.`);
     }
+    console.log(`${this.userName} got ${this.userPoints} questions out of ${this.guessingGameData.questionSet.questions.length} correct.`);
   };
 }
 
 let startGame = new AboutMeGame(prompt('Hello there! Enter your name.'), aboutMeInfo);
 
 startGame.playGame();
-
