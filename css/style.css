@@ -1,5 +1,6 @@
 body{
   background-color: gold;
+  width: 100%;
 }
 
 h1 {
@@ -10,19 +11,45 @@ h1 {
 header {
   background-color: whitesmoke;
   padding: 20px;
+  box-shadow: 0 4px 4px 0 rgba(0,0,0,.15);
 }
 
 main {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 div {
   padding: 20px;
   margin: 25px;
-  height: 150px;
+  margin-left: auto;
+  margin-right: auto;
   font-size: 25px;
-  background-color: white;
+  background-color: lavenderblush;
+  text-align: left;
+  width: 40%;
+  box-shadow: 0 2px 2px 0 black;
+}
+
+h3 {
+  font: bolder;
   text-align: center;
-  width: 100%;
+  text-decoration: underline;
+}
+
+ol{
+  list-style-type: numeric;
+  margin: 20px;
+  padding: 20px;
+}
+
+ul {
+  list-style-type: square;
+  margin: 20px;
+  padding: 20px;
+}
+
+li {
+  font-size: 25px;
 }

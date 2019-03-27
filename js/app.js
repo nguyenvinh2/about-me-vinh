@@ -10,9 +10,9 @@ const answerTemplate = {
 const aboutMeInfo = {
   'questions': ['Do I have a CS degree?', 'Do I take the bus to work?', 'Have I lived in Seattle since I was 7?', 'Am I a Belieber?', 'Have I worked for the Navy SEALs?', 'Guess how many ways I can write this application?' , 'Guess a company that refused to hire me.'],
   'responseSet': {
-    'correct': ['Correct, I have a ME and EE degree.', 'Yep, sadly I have no car and must bus to work.', 'Yes, Seattle Native here but don\'t really know anything about Seattle.', 'Correct, but someone around here is', 'Right, but only as a desk analyst', 'Correctamundo', `Yes, here is the full list: ${answerTemplate.companies.join(' ')}`
+    'correct': ['Correct, I have a ME and EE degree.', 'Yep, sadly I have no car and must bus to work.', 'Yes, Seattle Native here but don\'t really know anything about Seattle.', 'Correct, but someone around here is', 'Right, but only as a desk analyst', 'Correctamundo', `Yes, here is the full list: ${answerTemplate.companies.join(', ').toUpperCase()}`
     ],
-    'incorrect': ['Wrong! I do have an Engineering degree, though', 'Guess again, I do take the bus and it takes me an hour to get to work', 'That\'s incorrect, I started out living in the Columbia City part of Seattle.', 'Wrong, It\'s Evan who is a Belieber.', 'Well, technically I did work for the Navy SEALs so your answer is wrong.', 'Wrong, try again', `No more guesses or we'll be here forever. The answers are: ${answerTemplate.companies.join(' ')}`
+    'incorrect': ['Wrong! I do have an Engineering degree, though', 'Guess again, I do take the bus and it takes me an hour to get to work', 'That\'s incorrect, I started out living in the Columbia City part of Seattle.', 'Wrong, It\'s Evan who is a Belieber.', 'Well, technically I did work for the Navy SEALs so your answer is wrong.', 'Wrong, try again', `No more guesses or we'll be here forever. The answers are: ${answerTemplate.companies.join(', ').toUpperCase()}`
     ]
   },
   'answer': [answerTemplate.no, answerTemplate.yes, answerTemplate.yes, answerTemplate.no, answerTemplate.yes, Math.floor(Math.random() * 10 + 1), answerTemplate.companies],
@@ -41,6 +41,8 @@ for (let i = 0; i < aboutMeInfo.questions.length; i++) {
 let userGameSelection = prompt('Do you want to play a game? Click OK to continue. Click Cancel to exit...', 'No need to enter text');
 
 if (userGameSelection !== null) {
+  let numberGuessingArray = [];
+  let listGuessingArray = [];
   let userName = prompt('Hello there! Enter your name.');
   let userPoints = 0;
   let userGuesses = 1;
@@ -72,21 +74,23 @@ if (userGameSelection !== null) {
           aboutMeQuestions.questionSet[i].userEval = 'incorrect';
         }
       } else if (aboutMeQuestions.questionSet[i].questionType === 'number') {
+        numberGuessingArray.push(aboutMeQuestions.questionSet[i].userResponse);
         if (userGuesses < maxNumberGuessTries) {
           if (parseInt(aboutMeQuestions.questionSet[i].userResponse) === aboutMeQuestions.questionSet[i].answer) {
             alert(aboutMeQuestions.questionSet[i].responseSet.correct);
             aboutMeQuestions.questionSet[i].userEval = 'correct';
+            aboutMeQuestions.questionSet[i].userResponse = numberGuessingArray;
             userPoints++;
           } else {
             let tempMessage = aboutMeQuestions.questionSet[i].responseSet.incorrect;
+            let triesMessage = `You have ${maxNumberGuessTries - userGuesses} tries left.`;
             if (parseInt(aboutMeQuestions.questionSet[i].userResponse) < aboutMeQuestions.questionSet[i].answer) {
-              alert(tempMessage + ' The answer is higher');
+              alert(tempMessage + ' The answer is higher. ' + triesMessage);
             } else if (parseInt(aboutMeQuestions.questionSet[i].userResponse) > aboutMeQuestions.questionSet[i].answer ) {
-              alert(tempMessage + ' The answer is lower');
+              alert(tempMessage + ' The answer is lower. ' + triesMessage);
             } else {
-              alert('That\' not even an integer!');
+              alert('That\' not even an integer! ' + triesMessage);
             }
-            alert(`You have ${maxNumberGuessTries - userGuesses} tries left.`);
             userGuesses++;
             i--;
             continue;
@@ -94,24 +98,30 @@ if (userGameSelection !== null) {
         } else {
           alert('You\'r outta luck. Onwards to the next question.');
           aboutMeQuestions.questionSet[i].userEval = 'incorrect';
+          aboutMeQuestions.questionSet[i].userResponse = numberGuessingArray;
           userGuesses = 1;
         }
       } else if (aboutMeQuestions.questionSet[i].questionType === 'list') {
+        listGuessingArray.push(aboutMeQuestions.questionSet[i].userResponse);
         if(userGuesses < maxListGuessTries) {
           if (aboutMeQuestions.questionSet[i].answer.includes(aboutMeQuestions.questionSet[i].userResponse.toLowerCase())) {
             alert(aboutMeQuestions.questionSet[i].responseSet.correct);
+            aboutMeQuestions.questionSet[i].userEval = 'correct';
             userPoints++;
           } else {
             alert(`Wrong! You have ${maxListGuessTries - userGuesses} guesses left.`);
             userGuesses++;
             i--;
+            continue;
           }
         } else {
           alert(aboutMeQuestions.questionSet[i].responseSet.incorrect);
+          aboutMeQuestions.questionSet[i].userEval = 'incorrect';
+          aboutMeQuestions.questionSet[i].userResponse = listGuessingArray;
         }
       }
     }
-    console.log(`${userName} answered ${aboutMeQuestions.questionSet[i].userResponse} to Question "${aboutMeQuestions.questionSet[i].question}" and is ${aboutMeQuestions.questionSet[i].userEval} and has scored ${userPoints} points so far`);
+    console.log(`${userName} answered ${aboutMeQuestions.questionSet[i].userResponse} to Question "${aboutMeQuestions.questionSet[i].question}" and is ${aboutMeQuestions.questionSet[i].userEval}. Current score: ${userPoints}.`);
   }
   alert(`Congrats ${userName}! You finished the game. You got ${userPoints} out of ${aboutMeQuestions.questionSet.length} questions correct.`);
 }
