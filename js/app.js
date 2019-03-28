@@ -23,111 +23,115 @@ let aboutMeQuestions = {
   'questionSet': []
 };
 
-for (let i = 0; i < aboutMeInfo.questions.length; i++) {
-  let questionSetGetCompacted = {
-    'question': aboutMeInfo.questions[i],
-    'answer': aboutMeInfo.answer[i],
-    'userResponse': '',
-    'userEval': '',
-    'responseSet': {
-      'correct': aboutMeInfo.responseSet.correct[i],
-      'incorrect': aboutMeInfo.responseSet.incorrect[i]
-    },
-    'questionType': aboutMeInfo.type[i]
-  };
-  aboutMeQuestions.questionSet.push(questionSetGetCompacted);
-}
-
-let userGameSelection = confirm('Do you want to play a game?');
-
-if (userGameSelection === true) {
-  let numberGuessingArray = [];
-  let listGuessingArray = [];
-  let userName = prompt('Hello there! Enter your name.');
-  let userPoints = 0;
-  let userGuesses = 0;
-  let maxNumberGuessTries = 4;
-  let maxListGuessTries = 6;
-  if (userName === '' || userName === null) {
-    userName = 'Captain America';
-    alert('Since you didn\'t enter a name, we\'ll just call you Captain America');
-  } else {
-    alert(`Hi ${userName}, we're going to play a guessing game about moi. Click OK to continue...`);
+function yesNoGuessing () {
+  for (let i = 0; i < aboutMeInfo.questions.length; i++) {
+    let questionSetGetCompacted = {
+      'question': aboutMeInfo.questions[i],
+      'answer': aboutMeInfo.answer[i],
+      'userResponse': '',
+      'userEval': '',
+      'responseSet': {
+        'correct': aboutMeInfo.responseSet.correct[i],
+        'incorrect': aboutMeInfo.responseSet.incorrect[i]
+      },
+      'questionType': aboutMeInfo.type[i]
+    };
+    aboutMeQuestions.questionSet.push(questionSetGetCompacted);
   }
-  for (let i = 0; i < aboutMeQuestions.questionSet.length; i++) {
-    aboutMeQuestions.questionSet[i].userResponse = prompt(aboutMeQuestions.questionSet[i].question);
-    if (aboutMeQuestions.questionSet[i].userResponse === null) {
-      alert('Sorry you didn\'t want to play my game :(');
-      break;
-    } else {
-      if (aboutMeQuestions.questionSet[i].questionType === 'binary') {
-        if (!answerTemplate.yes.includes(aboutMeQuestions.questionSet[i].userResponse.toLowerCase()) && !answerTemplate.no.includes(aboutMeQuestions.questionSet[i].userResponse.toLowerCase())) {
-          alert('Sorry, but your answer is not in the right format');
-          i--;
-          continue;
-        } else if (aboutMeQuestions.questionSet[i].answer.includes(aboutMeQuestions.questionSet[i].userResponse.toLowerCase())) {
-          alert(aboutMeQuestions.questionSet[i].responseSet.correct);
-          aboutMeQuestions.questionSet[i].userEval = 'correct';
-          userPoints++;
-        } else {
-          alert(aboutMeQuestions.questionSet[i].responseSet.incorrect);
-          aboutMeQuestions.questionSet[i].userEval = 'incorrect';
-        }
-      } else if (aboutMeQuestions.questionSet[i].questionType === 'number') {
-        numberGuessingArray.push(aboutMeQuestions.questionSet[i].userResponse);
-        if (parseInt(aboutMeQuestions.questionSet[i].userResponse) === aboutMeQuestions.questionSet[i].answer) {
-          alert(aboutMeQuestions.questionSet[i].responseSet.correct);
-          aboutMeQuestions.questionSet[i].userEval = 'correct';
-          aboutMeQuestions.questionSet[i].userResponse = numberGuessingArray;
-          userPoints++;
-          userGuesses = 0;
-          numberGuessingArray = [];
-        } else {
-          userGuesses++;
-          if (userGuesses === maxNumberGuessTries) {
-            alert('You\'re outta luck. Onwards to the next question.');
-            aboutMeQuestions.questionSet[i].userEval = 'incorrect';
-            aboutMeQuestions.questionSet[i].userResponse = numberGuessingArray;
-            userGuesses = 0;
-            numberGuessingArray = [];
-            continue;
-          }
-          let tempMessage = aboutMeQuestions.questionSet[i].responseSet.incorrect;
-          let triesMessage = `You have ${maxNumberGuessTries - userGuesses} tries left.`;
-          if (parseInt(aboutMeQuestions.questionSet[i].userResponse) < aboutMeQuestions.questionSet[i].answer) {
-            alert(tempMessage + ' The answer is higher. ' + triesMessage);
-          } else if (parseInt(aboutMeQuestions.questionSet[i].userResponse) > aboutMeQuestions.questionSet[i].answer) {
-            alert(tempMessage + ' The answer is lower. ' + triesMessage);
-          } else {
-            alert('That\' not even an integer! ' + triesMessage);
-          }
-          i--;
-        }
+}
+yesNoGuessing();
 
-      } else if (aboutMeQuestions.questionSet[i].questionType === 'list') {
-        listGuessingArray.push(aboutMeQuestions.questionSet[i].userResponse);
-        if (aboutMeQuestions.questionSet[i].answer.includes(aboutMeQuestions.questionSet[i].userResponse.toLowerCase())) {
-          alert(aboutMeQuestions.questionSet[i].responseSet.correct);
-          aboutMeQuestions.questionSet[i].userEval = 'correct';
-          aboutMeQuestions.questionSet[i].userResponse = listGuessingArray;
-          userPoints++;
-          listGuessingArray = [];
-        } else {
-          userGuesses++;
-          if (userGuesses === maxListGuessTries) {
+function multipleGuessQuestions () {
+  let userGameSelection = confirm('Do you want to play a game?');
+  if (userGameSelection === true) {
+    let numberGuessingArray = [];
+    let listGuessingArray = [];
+    let userName = prompt('Hello there! Enter your name.');
+    let userPoints = 0;
+    let userGuesses = 0;
+    let maxNumberGuessTries = 4;
+    let maxListGuessTries = 6;
+    if (userName === '' || userName === null) {
+      userName = 'Captain America';
+      alert('Since you didn\'t enter a name, we\'ll just call you Captain America');
+    } else {
+      alert(`Hi ${userName}, we're going to play a guessing game about moi. Click OK to continue...`);
+    }
+    for (let i = 0; i < aboutMeQuestions.questionSet.length; i++) {
+      aboutMeQuestions.questionSet[i].userResponse = prompt(aboutMeQuestions.questionSet[i].question);
+      if (aboutMeQuestions.questionSet[i].userResponse === null) {
+        alert('Sorry you didn\'t want to play my game :(');
+        break;
+      } else {
+        if (aboutMeQuestions.questionSet[i].questionType === 'binary') {
+          if (!answerTemplate.yes.includes(aboutMeQuestions.questionSet[i].userResponse.toLowerCase()) && !answerTemplate.no.includes(aboutMeQuestions.questionSet[i].userResponse.toLowerCase())) {
+            alert('Sorry, but your answer is not in the right format');
+            i--;
+            continue;
+          } else if (aboutMeQuestions.questionSet[i].answer.includes(aboutMeQuestions.questionSet[i].userResponse.toLowerCase())) {
+            alert(aboutMeQuestions.questionSet[i].responseSet.correct);
+            aboutMeQuestions.questionSet[i].userEval = 'correct';
+            userPoints++;
+          } else {
             alert(aboutMeQuestions.questionSet[i].responseSet.incorrect);
             aboutMeQuestions.questionSet[i].userEval = 'incorrect';
-            aboutMeQuestions.questionSet[i].userResponse = listGuessingArray;
-            listGuessingArray = [];
+          }
+        } else if (aboutMeQuestions.questionSet[i].questionType === 'number') {
+          numberGuessingArray.push(aboutMeQuestions.questionSet[i].userResponse);
+          if (parseInt(aboutMeQuestions.questionSet[i].userResponse) === aboutMeQuestions.questionSet[i].answer) {
+            alert(aboutMeQuestions.questionSet[i].responseSet.correct);
+            aboutMeQuestions.questionSet[i].userEval = 'correct';
+            aboutMeQuestions.questionSet[i].userResponse = numberGuessingArray;
+            userPoints++;
+            userGuesses = 0;
+            numberGuessingArray = [];
           } else {
-            alert(`Wrong! You have ${maxListGuessTries - userGuesses} guesses left.`);
+            userGuesses++;
+            if (userGuesses === maxNumberGuessTries) {
+              alert('You\'re outta luck. Onwards to the next question.');
+              aboutMeQuestions.questionSet[i].userEval = 'incorrect';
+              aboutMeQuestions.questionSet[i].userResponse = numberGuessingArray;
+              userGuesses = 0;
+              numberGuessingArray = [];
+              continue;
+            }
+            let tempMessage = aboutMeQuestions.questionSet[i].responseSet.incorrect;
+            let triesMessage = `You have ${maxNumberGuessTries - userGuesses} tries left.`;
+            if (parseInt(aboutMeQuestions.questionSet[i].userResponse) < aboutMeQuestions.questionSet[i].answer) {
+              alert(tempMessage + ' The answer is higher. ' + triesMessage);
+            } else if (parseInt(aboutMeQuestions.questionSet[i].userResponse) > aboutMeQuestions.questionSet[i].answer) {
+              alert(tempMessage + ' The answer is lower. ' + triesMessage);
+            } else {
+              alert('That\' not even an integer! ' + triesMessage);
+            }
             i--;
           }
-        }
 
+        } else if (aboutMeQuestions.questionSet[i].questionType === 'list') {
+          listGuessingArray.push(aboutMeQuestions.questionSet[i].userResponse);
+          if (aboutMeQuestions.questionSet[i].answer.includes(aboutMeQuestions.questionSet[i].userResponse.toLowerCase())) {
+            alert(aboutMeQuestions.questionSet[i].responseSet.correct);
+            aboutMeQuestions.questionSet[i].userEval = 'correct';
+            aboutMeQuestions.questionSet[i].userResponse = listGuessingArray;
+            userPoints++;
+            listGuessingArray = [];
+          } else {
+            userGuesses++;
+            if (userGuesses === maxListGuessTries) {
+              alert(aboutMeQuestions.questionSet[i].responseSet.incorrect);
+              aboutMeQuestions.questionSet[i].userEval = 'incorrect';
+              aboutMeQuestions.questionSet[i].userResponse = listGuessingArray;
+              listGuessingArray = [];
+            } else {
+              alert(`Wrong! You have ${maxListGuessTries - userGuesses} guesses left.`);
+              i--;
+            }
+          }
+
+        }
       }
+      console.log(`${userName} answered ${aboutMeQuestions.questionSet[i].userResponse} to Question "${aboutMeQuestions.questionSet[i].question}" and is ${aboutMeQuestions.questionSet[i].userEval}. Current score: ${userPoints}.`);
     }
-    console.log(`${userName} answered ${aboutMeQuestions.questionSet[i].userResponse} to Question "${aboutMeQuestions.questionSet[i].question}" and is ${aboutMeQuestions.questionSet[i].userEval}. Current score: ${userPoints}.`);
+    alert(`Congrats ${userName}! You finished the game. You got ${userPoints} out of ${aboutMeQuestions.questionSet.length} questions correct.`);
   }
-  alert(`Congrats ${userName}! You finished the game. You got ${userPoints} out of ${aboutMeQuestions.questionSet.length} questions correct.`);
-}
+} multipleGuessQuestions();
