@@ -2,9 +2,10 @@
 
 ## Intro
 
-    This Web Application is for a introductory JavaScript course and is meant to make use of the alert 
-    and prompt statements. It asks the user to answer 5 questions in a yes/no format concerning details 
+    This Web Application is for a introductory JavaScript course and is meant to make use of the alert
+    and prompt statements. It asks the user to answer 5 questions in a yes/no format concerning details
     about the author.
+    Michelle was here.
 
 ## Author
 
@@ -17,6 +18,11 @@
     You may clone this repo and utilize it to your liking.
 
     VSCODE is recommended for editing files.
+
+## Paired Programmer
+    (28 March 19)
+    Tim Busch - Driver 
+    Vinh Nguyen - Navigator 
 
 ## Version
 
