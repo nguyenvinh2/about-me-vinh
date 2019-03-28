@@ -6,7 +6,6 @@ const answerTemplate = {
   'companies': ['microsoft', 'sap', 'boeing', 'general electric', 'nbc', 'lam']
 };
 
-
 const aboutMeInfo = {
   'questions': ['Do I have a CS degree?', 'Do I take the bus to work?', 'Have I lived in Seattle since I was 7?', 'Am I a Belieber?', 'Have I worked for the Navy SEALs?', 'Guess how many ways I can write this application?', 'Guess a company that refused to hire me.'],
   'responseSet': {
@@ -75,7 +74,7 @@ if (userGameSelection === true) {
         }
       } else if (aboutMeQuestions.questionSet[i].questionType === 'number') {
         numberGuessingArray.push(aboutMeQuestions.questionSet[i].userResponse);
-        if (parseInt(aboutMeQuestions.questionSet[i].userResponse) === aboutMeQuestions.questionSet[i].answer) {
+        if (parseFloat(aboutMeQuestions.questionSet[i].userResponse) === aboutMeQuestions.questionSet[i].answer) {
           alert(aboutMeQuestions.questionSet[i].responseSet.correct);
           aboutMeQuestions.questionSet[i].userEval = 'correct';
           aboutMeQuestions.questionSet[i].userResponse = numberGuessingArray;
@@ -94,16 +93,15 @@ if (userGameSelection === true) {
           }
           let tempMessage = aboutMeQuestions.questionSet[i].responseSet.incorrect;
           let triesMessage = `You have ${maxNumberGuessTries - userGuesses} tries left.`;
-          if (parseInt(aboutMeQuestions.questionSet[i].userResponse) < aboutMeQuestions.questionSet[i].answer) {
+          if (parseFloat(aboutMeQuestions.questionSet[i].userResponse) < aboutMeQuestions.questionSet[i].answer) {
             alert(tempMessage + ' The answer is higher. ' + triesMessage);
-          } else if (parseInt(aboutMeQuestions.questionSet[i].userResponse) > aboutMeQuestions.questionSet[i].answer) {
+          } else if (parseFloat(aboutMeQuestions.questionSet[i].userResponse) > aboutMeQuestions.questionSet[i].answer) {
             alert(tempMessage + ' The answer is lower. ' + triesMessage);
           } else {
-            alert('That\' not even an integer! ' + triesMessage);
+            alert('That\' not even an number! ' + triesMessage);
           }
           i--;
         }
-
       } else if (aboutMeQuestions.questionSet[i].questionType === 'list') {
         listGuessingArray.push(aboutMeQuestions.questionSet[i].userResponse);
         if (aboutMeQuestions.questionSet[i].answer.includes(aboutMeQuestions.questionSet[i].userResponse.toLowerCase())) {
@@ -124,7 +122,6 @@ if (userGameSelection === true) {
             i--;
           }
         }
-
       }
     }
     console.log(`${userName} answered ${aboutMeQuestions.questionSet[i].userResponse} to Question "${aboutMeQuestions.questionSet[i].question}" and is ${aboutMeQuestions.questionSet[i].userEval}. Current score: ${userPoints}.`);
