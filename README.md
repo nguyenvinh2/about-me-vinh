@@ -1,5 +1,7 @@
 # about-me-vinh
 
+[About Me](https://nguyenvinh2.github.io/about-me-vinh/)
+
 ## Intro
 
     This Web Application is for a introductory JavaScript course and is meant to make use of the alert 
@@ -8,11 +10,11 @@
 
 ## Installation
 
-    No installation is needed. Simply click on the link below:
+    No installation is needed.
 
     You may clone this repo and utilize it to your liking.
 
-  [About Me](https://nguyenvinh2.github.io/about-me-vinh/)
+    A Code Editor is required for editing. VS CODE is recommended.
 
 ## Author
 
@@ -21,7 +23,11 @@
 ## Version
 
     Date Initiated: 03/26/19
+    V 0.5: 03/27/19 - Javascript rewritten to fulfill assignment requirement of no functions. Additional
+    questions added.
 
 ## Output
 
 ![Image](img/output.png)
+
+

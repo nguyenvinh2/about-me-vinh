@@ -45,7 +45,7 @@ if (userGameSelection !== null) {
   let listGuessingArray = [];
   let userName = prompt('Hello there! Enter your name.');
   let userPoints = 0;
-  let userGuesses = 1;
+  let userGuesses = 0;
   let maxNumberGuessTries = 4;
   let maxListGuessTries = 6;
   if (userName === '' || userName === null) {
@@ -81,7 +81,17 @@ if (userGameSelection !== null) {
             aboutMeQuestions.questionSet[i].userEval = 'correct';
             aboutMeQuestions.questionSet[i].userResponse = numberGuessingArray;
             userPoints++;
+            userGuesses = 0;
           } else {
+            userGuesses++;
+            if (userGuesses === maxNumberGuessTries)
+            {
+              alert('You\'re outta luck. Onwards to the next question.');
+              aboutMeQuestions.questionSet[i].userEval = 'incorrect';
+              aboutMeQuestions.questionSet[i].userResponse = numberGuessingArray;
+              userGuesses = 0;
+              continue;
+            }
             let tempMessage = aboutMeQuestions.questionSet[i].responseSet.incorrect;
             let triesMessage = `You have ${maxNumberGuessTries - userGuesses} tries left.`;
             if (parseInt(aboutMeQuestions.questionSet[i].userResponse) < aboutMeQuestions.questionSet[i].answer) {
@@ -91,15 +101,8 @@ if (userGameSelection !== null) {
             } else {
               alert('That\' not even an integer! ' + triesMessage);
             }
-            userGuesses++;
             i--;
-            continue;
           }
-        } else {
-          alert('You\'r outta luck. Onwards to the next question.');
-          aboutMeQuestions.questionSet[i].userEval = 'incorrect';
-          aboutMeQuestions.questionSet[i].userResponse = numberGuessingArray;
-          userGuesses = 1;
         }
       } else if (aboutMeQuestions.questionSet[i].questionType === 'list') {
         listGuessingArray.push(aboutMeQuestions.questionSet[i].userResponse);
@@ -107,17 +110,19 @@ if (userGameSelection !== null) {
           if (aboutMeQuestions.questionSet[i].answer.includes(aboutMeQuestions.questionSet[i].userResponse.toLowerCase())) {
             alert(aboutMeQuestions.questionSet[i].responseSet.correct);
             aboutMeQuestions.questionSet[i].userEval = 'correct';
+            aboutMeQuestions.questionSet[i].userResponse = listGuessingArray;
             userPoints++;
           } else {
-            alert(`Wrong! You have ${maxListGuessTries - userGuesses} guesses left.`);
             userGuesses++;
-            i--;
-            continue;
+            if(userGuesses === maxListGuessTries) {
+              alert(aboutMeQuestions.questionSet[i].responseSet.incorrect);
+              aboutMeQuestions.questionSet[i].userEval = 'incorrect';
+              aboutMeQuestions.questionSet[i].userResponse = listGuessingArray;
+            } else {
+              alert(`Wrong! You have ${maxListGuessTries - userGuesses} guesses left.`);
+              i--;
+            }
           }
-        } else {
-          alert(aboutMeQuestions.questionSet[i].responseSet.incorrect);
-          aboutMeQuestions.questionSet[i].userEval = 'incorrect';
-          aboutMeQuestions.questionSet[i].userResponse = listGuessingArray;
         }
       }
     }
