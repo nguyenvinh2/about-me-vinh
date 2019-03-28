@@ -38,9 +38,9 @@ for (let i = 0; i < aboutMeInfo.questions.length; i++) {
   aboutMeQuestions.questionSet.push(questionSetGetCompacted);
 }
 
-let userGameSelection = prompt('Do you want to play a game? Click OK to continue. Click Cancel to exit...', 'No need to enter text');
+let userGameSelection = confirm('Do you want to play a game?');
 
-if (userGameSelection !== null) {
+if (userGameSelection === true) {
   let numberGuessingArray = [];
   let listGuessingArray = [];
   let userName = prompt('Hello there! Enter your name.');
