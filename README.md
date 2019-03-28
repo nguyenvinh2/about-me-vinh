@@ -4,9 +4,10 @@
 
 ## Intro
 
-    This Web Application is for a introductory JavaScript course and is meant to make use of the alert 
-    and prompt statements. It asks the user to answer 5 questions in a yes/no format concerning details 
+    This Web Application is for a introductory JavaScript course and is meant to make use of the alert
+    and prompt statements. It asks the user to answer 5 questions in a yes/no format concerning details
     about the author.
+    Michelle was here.
 
 ## Installation
 
