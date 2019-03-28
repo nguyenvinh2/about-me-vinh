@@ -21,6 +21,11 @@
 
     Vinh Nguyen
 
+## Paired Programmer
+    (28 March 19)
+    Tim Busch - Driver 
+    Vinh Nguyen - Navigator 
+
 ## Version
 
     Date Initiated: 03/26/19
