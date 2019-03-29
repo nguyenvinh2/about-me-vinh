@@ -32,6 +32,8 @@
 
     V 0.6: 3/28/19 - Added more HTML content, CSS, and Pair Programming
 
+    V 1.0: 3/29/19 - MVP. CSS acceptable. JavaScript refactored.
+
 ## Output
 
 ![Image](img/output.png)
