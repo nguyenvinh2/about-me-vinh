@@ -4,7 +4,8 @@
 
     This Web Application is for a introductory JavaScript course and is meant to make use of the alert
     and prompt statements. It asks the user to answer 5 questions in a yes/no format concerning details
-    about the author.
+    about the author. It also asks the user to guess a random number from 1-10 with 4 tries and asks the user
+    to guess an item from a pre-determined array.
     Michelle was here.
 
 ## Author
