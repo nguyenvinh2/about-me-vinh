@@ -12,6 +12,7 @@ h1 {
 
 header {
   background-color: whitesmoke;
+  opacity: .7;
   padding: 20px;
   box-shadow: 0 4px 4px 0 rgba(0,0,0,.15);
 }
@@ -27,35 +28,56 @@ main {
 
 h3 {
   font: bolder;
+  font-size: 150%;
+  word-wrap: normal;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   text-align: center;
-  margin-top: 45%;
+  margin-top: 25vh;
+  margin-left: auto;
+  margin-right: auto;
+  width: 85%;
+}
+
+#description {
+  font: bolder;
+  font-size: 100%;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  text-align: left;
+  margin-top: 5vh;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  width: 85%;
 }
 
 ol{
   list-style-type: numeric;
-  margin: 40px;
+  font-size: 100%;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  text-align: left;
+  margin: auto;
+  margin-top: 2vh;
+  width: 80%;
 }
 
 ul {
-  margin: 40px;
+  font-size: 100%;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  text-align: left;
+  margin: auto;
+  margin-top: 2vh;
+  width: 80%;
   list-style-type: square;
 }
 
 li {
+  padding-bottom: 10px;
   font-size: 25px;
   margin: 5px;
   margin-left: auto;
   margin-right: auto;
 }
 
-img {
-  display: block;
-  width: 100%;
-  border-radius: 15px;
-  margin-left: auto;
-  margin-right: auto;
-  height: 100%;
-}
 /*Flip card the W3School Way*/
 .flip {
   margin-top: 50px;
@@ -64,7 +86,7 @@ img {
   width: 35vw;
   transition: transform .75s;
   transform-style: preserve-3d;
-  height: 60vh;
+  height: 61vh;
 }
 
 .flip:hover {
@@ -79,7 +101,8 @@ img {
   height: 100%;
   box-shadow: 0 4px 4px 0 rgba(0,0,0,.15);
   border-radius: 15px; 
-  background-color: lavenderblush;
+  background-color: lavender;
+  opacity: .85;
 }
 .back {
   position: absolute;
@@ -89,7 +112,21 @@ img {
   height: 100%;
   box-shadow: 0 4px 4px 0 rgba(0,0,0,.15);
   border-radius: 15px; 
-  background-color: lavenderblush;
+  background-color: lavender;
+  opacity: .85;
   backface-visibility: hidden;
 }
 /*-------------*/
+
+img {
+  display: block;
+  width: 100%;
+  border-radius: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100%;
+  opacity: 1;
+}
+#me {
+  opacity: .9;
+}
