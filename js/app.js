@@ -96,10 +96,12 @@ function Player(name) {
           i = tempData[2];
           aboutMeQuestions = tempData[3];
         }
-        console.log(`${this.userName} answered "${aboutMeQuestions.questionSet[i].userResponse}" to Question "${aboutMeQuestions.questionSet[i].question}" and is ${aboutMeQuestions.questionSet[i].userEval}. Current score: ${this.userPoints}.`);
+
+        if (i === aboutMeQuestions.questionSet.length-1) {
+          alert(`Congrats ${this.userName}! You finished the game. You got ${this.userPoints} out of ${aboutMeQuestions.questionSet.length} questions correct.`);
+          this.gameData = aboutMeQuestions;
+        }
       }
-      alert(`Congrats ${this.userName}! You finished the game. You got ${this.userPoints} out of ${aboutMeQuestions.questionSet.length} questions correct.`);
-      this.gameData = aboutMeQuestions;
     }
   };
   //Plays the true false game
@@ -135,17 +137,18 @@ function Player(name) {
         aboutMeQuestions.questionSet[i].userResponse = numberGuessingArray;
         userGuesses = 0;
         numberGuessingArray = [];
-      }
-      let tempMessage = aboutMeQuestions.questionSet[i].responseSet.incorrect;
-      let triesMessage = `You have ${maxNumberGuessTries - userGuesses} tries left.`;
-      if (parseInt(aboutMeQuestions.questionSet[i].userResponse) < aboutMeQuestions.questionSet[i].answer) {
-        alert(tempMessage + ' The answer is higher. ' + triesMessage);
-      } else if (parseInt(aboutMeQuestions.questionSet[i].userResponse) > aboutMeQuestions.questionSet[i].answer) {
-        alert(tempMessage + ' The answer is lower. ' + triesMessage);
       } else {
-        alert('That\' not even an integer! ' + triesMessage);
+        let tempMessage = aboutMeQuestions.questionSet[i].responseSet.incorrect;
+        let triesMessage = `You have ${maxNumberGuessTries - userGuesses} tries left.`;
+        if (parseInt(aboutMeQuestions.questionSet[i].userResponse) < aboutMeQuestions.questionSet[i].answer) {
+          alert(tempMessage + ' The answer is higher. ' + triesMessage);
+        } else if (parseInt(aboutMeQuestions.questionSet[i].userResponse) > aboutMeQuestions.questionSet[i].answer) {
+          alert(tempMessage + ' The answer is lower. ' + triesMessage);
+        } else {
+          alert('That\' not even an integer! ' + triesMessage);
+        }
+        i--;
       }
-      i--;
     }
     return [numberGuessingArray, userGuesses, i, aboutMeQuestions];
   };
