@@ -30,7 +30,7 @@
 
     V 0.5: 03/27/19 - JS rewritten to fulfill assignment requirement. Additional questions added.
 
-    V 0.6: 3/28/19 - Added more HTML content
+    V 0.6: 3/28/19 - Added more HTML content, CSS, and Pair Programming
 
 ## Output
 

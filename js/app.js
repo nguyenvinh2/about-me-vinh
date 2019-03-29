@@ -22,6 +22,8 @@ let aboutMeQuestions = {
   'questionSet': []
 };
 
+//TODO actually do some more refactoring
+
 function yesNoGuessing () {
   for (let i = 0; i < aboutMeInfo.questions.length; i++) {
     let questionSetGetCompacted = {
