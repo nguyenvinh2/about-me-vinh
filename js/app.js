@@ -6,7 +6,6 @@ const answerTemplate = {
   'companies': ['microsoft', 'sap', 'boeing', 'general electric', 'nbc', 'lam']
 };
 
-
 const aboutMeInfo = {
   'questions': ['Do I have a CS degree?', 'Do I take the bus to work?', 'Have I lived in Seattle since I was 7?', 'Am I a Belieber?', 'Have I worked for the Navy SEALs?', 'Guess how many ways I can write this application?', 'Guess a company that refused to hire me.'],
   'responseSet': {
@@ -22,6 +21,8 @@ const aboutMeInfo = {
 let aboutMeQuestions = {
   'questionSet': []
 };
+
+//TODO actually do some more refactoring
 
 function yesNoGuessing () {
   for (let i = 0; i < aboutMeInfo.questions.length; i++) {
@@ -39,6 +40,7 @@ function yesNoGuessing () {
     aboutMeQuestions.questionSet.push(questionSetGetCompacted);
   }
 }
+
 yesNoGuessing();
 
 function multipleGuessQuestions () {
@@ -106,7 +108,6 @@ function multipleGuessQuestions () {
             }
             i--;
           }
-
         } else if (aboutMeQuestions.questionSet[i].questionType === 'list') {
           listGuessingArray.push(aboutMeQuestions.questionSet[i].userResponse);
           if (aboutMeQuestions.questionSet[i].answer.includes(aboutMeQuestions.questionSet[i].userResponse.toLowerCase())) {
@@ -127,11 +128,12 @@ function multipleGuessQuestions () {
               i--;
             }
           }
-
         }
       }
       console.log(`${userName} answered ${aboutMeQuestions.questionSet[i].userResponse} to Question "${aboutMeQuestions.questionSet[i].question}" and is ${aboutMeQuestions.questionSet[i].userEval}. Current score: ${userPoints}.`);
     }
     alert(`Congrats ${userName}! You finished the game. You got ${userPoints} out of ${aboutMeQuestions.questionSet.length} questions correct.`);
   }
-} multipleGuessQuestions();
+}
+
+multipleGuessQuestions();
