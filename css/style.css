@@ -22,6 +22,8 @@ main {
   flex-wrap: wrap;
   width: 100%;
   justify-content: space-evenly;
+  -webkit-justify-content:space-evenly;
+  -moz-justify-content:space-evenly;
   margin-bottom: 50px;
 }
 
@@ -126,6 +128,7 @@ li {
   border-radius: 15px; 
   background-color: whitesmoke;
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   opacity: .85;
   z-index: 2;
 }
@@ -140,6 +143,7 @@ li {
   opacity: .85;
   z-index: 1;
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 /*-------------*/
 
