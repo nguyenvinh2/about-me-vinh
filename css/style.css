@@ -124,6 +124,7 @@ img {
   background-color: whitesmoke;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
   opacity: .85;
   z-index: 2;
 }
@@ -140,6 +141,7 @@ img {
   z-index: 1;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
 }
 
 /*-------------*/
